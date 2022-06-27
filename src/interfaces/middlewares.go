@@ -1,9 +1,7 @@
-package middlewares
+package interfaces
 
-import "github.com/olaisaac/bigweld/src/interfaces"
+import "github.com/gofiber/fiber/v2"
 
-type MiddlewareContainer struct{}
-
-func NewMiddlewareContainer() interfaces.MiddlewareContainer {
-	return &MiddlewareContainer{}
+type MiddlewareContainer interface {
+	TokenAuth(c *fiber.Ctx) error
 }
