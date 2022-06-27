@@ -3,7 +3,7 @@ package http
 import (
 	"fmt"
 	"github.com/gofiber/fiber/v2"
-	interfaces "go-api-learning/src/interfaces"
+	"go-api-learning/src/interfaces"
 	"os"
 	"os/signal"
 	"syscall"
@@ -25,8 +25,8 @@ func NewServer(handlers interfaces.HandlerContainer, mid interfaces.MiddlewareCo
 }
 
 func (hs *HTTPServer) loadRoutes(handlerContainer interfaces.HandlerContainer, middlewares interfaces.MiddlewareContainer) {
-
-	Router := hs.Server.Use(middlewares.BasicAuth)
+	
+	Router := hs.Server.Use(middlewares.TokenAuth)
 	for _, handler := range handlerContainer.GetHandlers() {
 		handler.Routes(Router)
 	}
